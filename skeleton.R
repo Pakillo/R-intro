@@ -14,23 +14,17 @@
 
 ## Calling functions (sum, mean, log)
 
-## Getting help: ?, google, stackoverflow, Rdocumentation, Rseek
+## Getting help: ?, ??, google, stackoverflow, Rdocumentation, Rseek
 
 ## Reading in data
 
-## Indexing, subsetting, which
-
-## apply, tapply
+## Indexing, logical subsetting, which
 
 ## Packages
 
-
-
-##
+## tidyr & dplyr
 
 ## ggplot
-
-## tidyr & dplyr
 
 ## modelr
 

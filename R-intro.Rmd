@@ -1,0 +1,90 @@
+---
+title: "Why R"
+author: "Francisco Rodriguez-Sanchez"
+date: "http://bit.ly/frod_san"
+output: 
+  beamer_presentation:
+    fig_height: 5
+    fig_width: 6
+    incremental: yes
+    keep_tex: no
+header-includes:
+  - \def\begincols{\begin{columns}[c]}
+  - \def\endcols{\end{columns}}
+  - \def\begincol{\begin{column}{0.48\textwidth}}
+  - \def\endcol{\end{column}} 
+  - \setlength{\emergencystretch}{0em}
+  - \setlength{\parskip}{0pt}
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+## Text results
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+## Code decoration
+opts_chunk$set(tidy = FALSE, comment = NA, highlight = TRUE, size = "footnotesize")
+
+```
+
+
+## Why R
+
+- Free, open-source, cross-platform
+
+- Not just stats package, but a programming language
+
+- Can do many things beyond stats (e.g. scrape web data, GIS, etc)
+
+- >10,000 packages extending functionality
+
+- Flexible, powerful
+
+- Can easily connect to other languages (e.g. C++)
+
+- High-quality graphics
+
+- Large, helpful community (forums, StackOverflow, Twitter)
+
+
+# Cool things you can do with R (apart from cutting-edge stats)
+
+## Where am I?
+
+```{r}
+library(ggmap)
+here <- geocode("Campus del Carmen, Huelva, Spain")
+ggmap(get_map(here)) + 
+  geom_point(data = here, aes(lon, lat), size = 5, colour = "red")
+```
+
+
+## Get climate data from the web
+
+```{r}
+library(meteoForecast)
+tiempo <- getRaster("temp", day = "2016-11-25")
+library(rasterVis)
+levelplot(tiempo, layers=10:15)
+```
+
+
+## Create websites, slides, articles, thesis
+
+```{r}
+include_graphics("images/rmarkdown.png")
+```
+
+
+## Download countries data from World Bank and display motion chart
+
+```{r eval=FALSE}
+library(googleVis)
+demo(WorldBank)
+```
+
+
+# and many more...
+
+
