@@ -4,8 +4,8 @@ author: "Francisco Rodriguez-Sanchez"
 date: "http://bit.ly/frod_san"
 output: 
   beamer_presentation:
-    fig_height: 5
-    fig_width: 6
+    fig_height: 3
+    fig_width: 4
     incremental: yes
     keep_tex: no
 header-includes:
@@ -31,28 +31,26 @@ opts_chunk$set(tidy = FALSE, comment = NA, highlight = TRUE, size = "footnotesiz
 
 ## Why R
 
-- Free, open-source, cross-platform
+- Gratuito, código abierto, multi-plataforma
 
-- Not just stats package, but a programming language
+- No es sólo programa estadístico, sino lenguaje de programación
 
-- Can do many things beyond stats (e.g. scrape web data, GIS, etc)
+- +15,000 paquetes (add-ons)
 
-- +15,000 packages extending functionality
+- Flexible, potente
 
-- Flexible, powerful
+- Puede comunicarse con otros lenguajes (Python, C++, ...)
 
-- Can easily connect to other languages (e.g. Python, C++)
+- Gráficos de alta calidad
 
-- High-quality graphics
-
-- Large, helpful community (forums, StackOverflow, Twitter)
+- Gran comunidad (forums, StackOverflow, twitter)
 
 
-# Some cool things you can do with R (besides cutting-edge stats)
+# Algunas cosas chulas que se pueden hacer con R (además de estadística de alto nivel)
 
 
 
-## Where is Rio de Janeiro?
+## Dónde está Rio de Janeiro?
 
 ```{r echo=FALSE}
 library(tmap)
@@ -71,7 +69,7 @@ ggplot() +
 
 
 
-## How was air quality in Sevilla?
+## Calidad del aire en Sevilla?
 
 ```{r echo=c(-3)}
 library(aire)
@@ -82,7 +80,7 @@ timePlot(air.se, pollutant = "O3", type = "site")
 ```
 
 
-## Get climate data from the web
+## Descargar, analizar y visualizar datos de clima
 
 ```{r}
 library(meteoForecast)
@@ -93,14 +91,14 @@ levelplot(tiempo, layers = 10:13)
 
 
 
-## Create websites, slides, articles, thesis
+## Crear páginas webs, presentaciones, informes, tesis 
 
 ```{r echo=FALSE}
 include_graphics("images/rmarkdown.png")
 ```
 
 
-## Download data from World Bank and display motion chart
+## Obtener y visualizar datos del Banco Mundial 
 
 ```{r eval=FALSE}
 library(googleVis)
@@ -108,6 +106,6 @@ demo(WorldBank)
 ```
 
 
-# and many more...
+# y muchas más...
 
 
