@@ -61,7 +61,7 @@ knit_hooks$set(tinycode = function(before, options, envir) {
 
 - Can do many things beyond stats (scrape web data, GIS, etc)
 
-- +15,000 packages extending functionality
+- +18,000 packages extending functionality
 
 - Flexible, powerful
 

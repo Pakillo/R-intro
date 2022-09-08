@@ -1,113 +1,292 @@
 ---
-title: "Why R"
-author: "Francisco Rodriguez-Sanchez"
-date: "http://bit.ly/frod_san"
-output: 
-  beamer_presentation:
-    fig_height: 5
-    fig_width: 6
-    incremental: yes
-    keep_tex: no
-header-includes:
-  - \def\begincols{\begin{columns}[c]}
-  - \def\endcols{\end{columns}}
-  - \def\begincol{\begin{column}{0.48\textwidth}}
-  - \def\endcol{\end{column}} 
-  - \setlength{\emergencystretch}{0em}
-  - \setlength{\parskip}{0pt}
-fontsize: 10pt
+title: "A very brief introduction to R"
+author: "Francisco Rodríguez-Sánchez"
+institute: "https://frodriguezsanchez.net"
+date: "@frod_san"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
 
 ```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
 library(knitr)
-## Text results
-opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, cache = TRUE)
+knit_hooks$set(crop = hook_pdfcrop)
+opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, 
+               crop = TRUE, cache = TRUE, comment = "")
 
-## Code decoration
-opts_chunk$set(tidy = FALSE, comment = NA, highlight = TRUE, size = "footnotesize")
+opts_chunk$set(out.width = "70%", fig.align = "center")
+```
+
+
+
+```{css, echo=FALSE}
+
+.remark-slide-number {
+  display: none;
+}
+
+# .remark-slide-content {
+#   font-size: 18px;
+#   padding: 20px 80px 20px 80px;
+# }
+
+.remark-slide-content p, ul, ol, li {
+  font-size: 18px;
+}
+
+
+.remark-code, .remark-inline-code {
+  background: #f0f0f0;
+}
+
+.remark-code {
+  font-size: 18px;
+}
+
+.hugecode .remark-code { font-size: 200% }
+.largecode .remark-code { font-size: 130% }
+.smallcode .remark-code{ font-size: 70% }
+.tinycode .remark-code { font-size: 50% }
+
+.huge { font-size: 200% }
+.large { font-size: 130% }
+.small { font-size: 70% }
+.tiny { font-size: 50% }
 
 ```
 
 
-## Why R
-
-- Free, open-source, cross-platform
-
-- Not just stats package, but a programming language
-
-- Can do many things beyond stats (e.g. scrape web data, GIS, etc)
-
-- +15,000 packages extending functionality
-
-- Flexible, powerful
-
-- Can easily connect to other languages (e.g. Python, C++)
-
-- High-quality graphics
-
-- Large, helpful community (forums, StackOverflow, Twitter)
 
 
-# Some cool things you can do with R (besides cutting-edge stats)
+## RStudio
 
+https://rstudio.com
 
-
-## Where is Rio de Janeiro?
-
-```{r echo=FALSE}
-library(tmap)
-data("World")
+```{r echo=FALSE, out.width="70%"}
+include_graphics("images/rstudio.png")
 ```
 
+
+---
+
+## RStudio projects
+
+https://r4ds.had.co.nz/workflow-projects.html
+
+```{r echo=FALSE, out.width="50%"}
+include_graphics("images/projects_new.png")
+```
+
+
+---
+
+## R as calculator
 
 ```{r}
-library(tmaptools)
-rio <- geocode_OSM("Rio de Janeiro", as.sf = TRUE)
-library(ggplot2)
-ggplot() +
-  geom_sf(data = World) +
-  geom_sf(data = rio, size = 4)
+4 + 8
 ```
-
-
-
-## How was air quality in Sevilla?
-
-```{r echo=c(-3)}
-library(aire)
-air.se <- get_daily_data("2016-12-10", province = "se")
-air.se$O3 <- as.numeric(air.se$O3)
-library(openair)
-timePlot(air.se, pollutant = "O3", type = "site")
-```
-
-
-## Get climate data from the web
 
 ```{r}
-library(meteoForecast)
-tiempo <- getRaster("temp", day = "2016-11-25")
-library(rasterVis)
-levelplot(tiempo, layers = 10:13)
+20 * 3
 ```
 
 
+---
 
-## Create websites, slides, articles, thesis
+## R as calculator
 
-```{r echo=FALSE}
-include_graphics("images/rmarkdown.png")
+```{r}
+log(4)
+```
+
+```{r}
+sqrt(50)
 ```
 
 
-## Download data from World Bank and display motion chart
+---
 
-```{r eval=FALSE}
-library(googleVis)
-demo(WorldBank)
+## Getting help about functions
+
+```{r}
+?log
+?sqrt
 ```
 
 
-# and many more...
+---
+
+## Assignment
+
+```{r}
+x <- 3
+x
+```
+
+
+---
+
+## Assignment
+
+```{r}
+x <- 3
+x
+log.x <- log(x)
+log.x
+```
+
+
+---
+
+## Assignment
+
+```{r}
+y <- c(1, 2, 5, 12)
+log(y)
+log.y <- log(y)
+```
+
+
+---
+
+## Vectors
+
+```{r error=TRUE}
+students <- c("Maria", "Pedro", "Pablo", "Alicia")
+sum(students)
+```
+
+
+---
+
+## Vectors
+
+```{r}
+students <- c("Maria", "Pedro", "Pablo", "Alicia")
+length(students)
+```
+
+
+---
+
+## Vectors
+
+```{r}
+values <- c(4, 3, 1)
+sum(values)
+```
+
+
+---
+
+## Indexing
+
+```{r}
+students <- c("Maria", "Pedro", "Pablo", "Alicia")
+students[1]
+students[3]
+students[c(3,4)]
+students[-2]
+```
+
+
+---
+
+## Indexing & subsetting
+
+```{r}
+x <- c(2, 5, 1)
+x > 4
+which(x > 4)
+```
+
+
+---
+
+## NA: Not Available / Missing Values
+
+```{r}
+ages <- c(8, 31, 14, NA, 35, NA)
+ages > 30
+```
+
+
+---
+
+## NA: Not Available / Missing Values
+
+```{r}
+ages <- c(8, 31, 14, NA, 35, NA)
+ages == 20
+ages == 31
+ages == 31 | ages == 35
+```
+
+
+---
+
+## Calling functions
+
+```{r}
+ages <- c(8, 31, 14, NA, 35, NA)
+sum(ages)
+?sum
+sum(ages, na.rm = TRUE)
+mean(ages, na.rm = TRUE)
+```
+
+
+---
+
+## Getting help
+
+
+- ?function
+
+- Search online: r whatever
+
+- [Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
+
+- Plenty of online tutorials, books, etc ([e.g.](https://education.rstudio.com/))
+
+
+---
+
+## Your turn
+
+Having this vector of values
+```{r}
+x <- c(2, 4, 6, 8, 10, NA)
+```
+
+- select the 2nd element
+
+- get the sum of all values in x
+
+- create new object (y) with all values from x > 5
+
+
+
+
+
+---
+
+## END
+
+
+![](images/CC-BY-NC-SA_logo.png)
+
+Slides and source code available at https://github.com/Pakillo
+
+
+
+
 
 
